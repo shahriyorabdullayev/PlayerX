@@ -10,7 +10,6 @@ import me.shakhriyor.mustplayer.common.delegates.viewBinding
 import me.shakhriyor.mustplayer.data.model.MusicModel
 import me.shakhriyor.mustplayer.databinding.FragmentPlayingNowBinding
 import me.shakhriyor.mustplayer.ui.MyMediaPlayer
-import me.shakhriyor.mustplayer.ui.viewpager.CardItem
 import me.shakhriyor.mustplayer.ui.viewpager.CardPagerAdapter
 import me.shakhriyor.mustplayer.ui.viewpager.ShadowTransformer
 import java.util.concurrent.TimeUnit
@@ -30,32 +29,35 @@ class PlayingNowFragment : Fragment(R.layout.fragment_playing_now) {
     private lateinit var musicList: ArrayList<MusicModel>
     private val mediaPlayer = MyMediaPlayer.getInstance()!!
 
+    private lateinit var listCard: ArrayList<MusicModel?>
+    private lateinit var currentMusic: MusicModel
+
     private var isPlay = false
     private val x = 0
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+            listCard = it.getParcelableArrayList<MusicModel>("musics")!!
+            currentMusic = it.getParcelable("music")!!
+
+            Log.d("@@@", "onCreate: $listCard")
+            Log.d("@@@", "onCreate: $currentMusic")
+        }
+    }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         mCardAdapter = CardPagerAdapter()
-        mCardAdapter!!.addCardItem(CardItem("Salom", "Xayr"))
-        mCardAdapter!!.addCardItem(CardItem("Salom", "Xayr"))
-        mCardAdapter!!.addCardItem(CardItem("Salom", "Xayr"))
-        mCardAdapter!!.addCardItem(CardItem("Salom", "Xayr"))
-        mCardAdapter!!.addCardItem(CardItem("Salom", "Xayr"))
-        mCardAdapter!!.addCardItem(CardItem("Salom", "Xayr"))
-        mCardAdapter!!.addCardItem(CardItem("Salom", "Xayr"))
-        mCardAdapter!!.addCardItem(CardItem("Salom", "Xayr"))
-        mCardAdapter!!.addCardItem(CardItem("Salom", "Xayr"))
-        mCardAdapter!!.addCardItem(CardItem("Salom", "Xayr"))
-        mCardAdapter!!.addCardItem(CardItem("Salom", "Xayr"))
-        mCardAdapter!!.addCardItem(CardItem("Salom", "Xayr"))
 
 
-        arguments?.let {
-            val musicList = it.getString("music")
-            Log.d("@@@", "onViewCreated: $musicList")
+        for (i in listCard) {
+            mCardAdapter!!.addCardItem(i!!)
         }
+
+
 
 
         mCardShadowTransformer = ShadowTransformer(binding.vpPlayingNow, mCardAdapter!!)

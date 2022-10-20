@@ -68,7 +68,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 null,
                 null)
         while (cursor!!.moveToNext()) {
-
             val songData = MusicModel(cursor.getString(1),
                 cursor.getString(0),
                 cursor.getString(2).toInt(),
@@ -91,7 +90,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         recommendAdapter.itemClickListener = {
             findNavController().navigate(R.id.action_homeFragment_to_playingNowFragment,
-                bundleOf("music" to it.path))
+                bundleOf("musics" to musics, "music" to it))
         }
 
         binding.btnDrawerMenu.setOnClickListener {

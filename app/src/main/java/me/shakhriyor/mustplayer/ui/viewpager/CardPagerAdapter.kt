@@ -6,12 +6,14 @@ import android.view.ViewGroup
 import androidx.cardview.widget.CardView
 import androidx.viewpager.widget.PagerAdapter
 import me.shakhriyor.mustplayer.R
+import me.shakhriyor.mustplayer.data.model.Music
+import me.shakhriyor.mustplayer.data.model.MusicModel
 import me.shakhriyor.mustplayer.ui.viewpager.CardAdapter.Companion.MAX_ELEVATION_FACTOR
 
 class CardPagerAdapter : PagerAdapter(), CardAdapter {
 
     private var mViews: ArrayList<CardView?>? = null
-    private var mData: ArrayList<CardItem?>? = null
+    private var mData: ArrayList<MusicModel?>? = null
     private var mBaseElevation = 0f
 
     init {
@@ -19,9 +21,9 @@ class CardPagerAdapter : PagerAdapter(), CardAdapter {
         mViews = ArrayList()
     }
 
-    fun addCardItem(item: CardItem) {
+    fun addCardItem(items: MusicModel) {
         mViews?.add(null)
-        mData?.add(item)
+        mData?.add(items)
     }
 
     fun getBaseElevetion(): Float {
@@ -65,7 +67,7 @@ class CardPagerAdapter : PagerAdapter(), CardAdapter {
         mViews?.set(position, null)
     }
 
-    private fun bind(item: CardItem, view: View) {
+    private fun bind(item: MusicModel, view: View) {
 //        val titleTextView = view.findViewById<View>(R.id.titleTextView) as TextView
 //        val contentTextView = view.findViewById<View>(R.id.contentTextView) as TextView
 //        titleTextView.text = item.title
