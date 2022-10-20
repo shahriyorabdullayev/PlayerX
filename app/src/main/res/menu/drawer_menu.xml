@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/ic_profile_dark"
+            android:title="Profile" />
+
+        <item
+            android:id="@+id/nav_liked_songs"
+            android:icon="@drawable/ic_like_dark"
+            android:title="Liked songs" />
+
+        <item
+            android:id="@+id/nav_language"
+            android:icon="@drawable/ic_language_dark"
+            android:title="Language" />
+
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_settings"
+            android:title="Settings" />
+
+        <item
+            android:id="@+id/nav_contact"
+            android:icon="@drawable/ic_contact_us_dark"
+            android:title="Contact us" />
+
+    </group>
+</menu>
